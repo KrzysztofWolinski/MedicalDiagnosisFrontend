@@ -1,58 +1,34 @@
 'use strict';
 
-var medicalDiagnosisApp = angular.module('medicalDiagnosis', ['ui.router']);
-
-medicalDiagnosisApp
+angular.module('medicalDiagnosis')
     .config([
         '$stateProvider',
         function($stateProvider) {
 
+            var checkAuthorization = ['$injector', 'AuthService', function($injector, AuthService) {
+                console.log('Auth: ' + AuthService.checkAuthorization());         
+            }];
+
             $stateProvider
                 .state('home', {
                     url: '/home',
-                    views: {
-                        'navigation': {
-                            templateUrl: 'partials/navigation.html'
-                        },
-                        'main': {
-                            templateUrl: 'partials/home.html'
-                        }
-                    }
+                    templateUrl: 'partials/home.html',
+                    onEnter: checkAuthorization
                 })
                 .state('diagnosis', {
-                    url: 'diagnosis',
-                    views: {
-                        'navigation': {
-                            templateUrl: 'partials/navigation.html'
-                        },
-                        'main': {
-                            templateUrl: 'partials/diagnosis.html'
-                        }
-                    }
+                    url: '/diagnosis',
+                    templateUrl: 'partials/diagnosis.html',
+                    onEnter: checkAuthorization
                 })
                 .state('profile', {
-                    url: 'profile',
-                    views: {
-                        'navigation': {
-                            templateUrl: 'partials/navigation.html'
-                        },
-                        'main': {
-                            templateUrl: 'partials/profile.html'
-                        }
-                    }
+                    url: '/profile',
+                    templateUrl: 'partials/profile.html',
+                    onEnter: checkAuthorization
                 })
                 .state('about', {
-                    url: 'about',
-                    views: {
-                        'navigation': {
-                            templateUrl: 'partials/navigation.html'
-                        },
-                        'main': {
-                            templateUrl: 'partials/about.html'
-                        }
-                    }
-                });
-
-           
+                    url: '/about',
+                    templateUrl: 'partials/about.html',
+                    onEnter: checkAuthorization
+                });           
         }
     ]);

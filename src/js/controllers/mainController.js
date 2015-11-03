@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medicalDiagnosis')
+angular.module('medicalDiagnosis.controllers')
     .controller('mainController', [
         '$rootScope',
         '$scope',

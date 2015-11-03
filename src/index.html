@@ -14,18 +14,24 @@
     <!-- JS (load angular, ui-router, and our custom js file) -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script src="js/Router.js"></script>
+
+    <!-- Config -->
     <script src="js/Config.js"></script>
+    <script src="js/Router.js"></script>
 
     <!-- Controllers -->
     <script src="js/controllers/homeController.js"></script>
     <script src="js/controllers/mainController.js"></script>
     <script src="js/controllers/notificationsController.js"></script>
     <script src="js/controllers/aboutController.js"></script>
+
+    <!-- Services -->
+    <script src="js/services/AuthService.js"></script>
+
 </head>
 
 <body ng-controller="mainController">
-    <div ui-view="navigation"></div>
+    <div ng-include="'partials/navigation.html'"></div>
 
     <div class="container-fluid">
         <div class="text-center">
@@ -37,10 +43,12 @@
         <!-- Customizable info/warning/error panel-->
         <div ng-include="getNotificationPanel()"></div>
     </div>
+    
     <div class="col-md-8">      
         <!-- Main view -->
-        <div ui-view="main"></div>
+        <div ui-view></div>
     </div>
+
     <div class="col-md-2"></div>
 
 </body>
