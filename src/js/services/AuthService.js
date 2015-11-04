@@ -3,7 +3,7 @@
 angular.module('medicalDiagnosis.services')
 	.provider('AuthService', function AuthServiceProvider() {
 
-		this.$get = ['$log', function AuthServiceFactory($log) {
+		this.$get = ['$log', '$state', function AuthServiceFactory($log, $state) {
 			var isLogged = false;
 
 			var service = {
@@ -14,10 +14,12 @@ angular.module('medicalDiagnosis.services')
 
 			function login() {
 				isLogged = true;
+				$state.go('home');
 			}
 		
 			function logout() {
 				isLogged = false;
+				$state.go('login');
 			}
 
 			function checkAuthorization() {

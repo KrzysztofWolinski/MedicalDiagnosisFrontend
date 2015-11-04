@@ -1,11 +1,11 @@
-<nav class="navbar navbar-inverse" role="navigation">
+<nav class="navbar navbar-inverse" role="navigation" ng-controller="navigationController">
     <div class="navbar-header">
         <a class="navbar-brand" ui-sref="home">
             <span class="glyphicon glyphicon-cloud"></span>
             Medical Diagnosis
         </a>
     </div>
-    <ul class="text-right">
+    <ul ng-show="state.current.data.showMenu" class="text-right">
         <li class="btn btn-lg" ui-sref="home">
             <span class="glyphicon glyphicon-home"></span>
             Home
@@ -23,6 +23,11 @@
         <li class="btn btn-lg" ui-sref="about">
             <span class="glyphicon glyphicon-book"></span>
             About
+        </li>
+
+        <li class="btn btn-lg" ng-click="logout()">
+            <span class="glyphicon glyphicon-book"></span>
+            Logout
         </li>
     </ul>
 </nav>
