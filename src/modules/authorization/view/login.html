@@ -1,0 +1,20 @@
+<div ng-controller="loginController">
+	
+	<div class="login-box">
+		
+		<div class="pull-left">
+			<label>Username:</label>
+			<input id="username" type="text" ng-model="user.username">
+			
+			<label>Password:</label>
+			<input id="password" type="password" ng-model="user.password">
+		</div>
+
+		<div class="pull-right" ng-show="isSubmitButtonEnabled()">
+			<button classs="btn btn-small" ng-click="login()">
+				Login
+			</button>
+		</div>
+	</div>
+
+</div>

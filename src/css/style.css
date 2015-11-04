@@ -1,3 +1,21 @@
 .body {
     font-family: museo-slab, Georgia, "Times New Roman", Times, serif;
 }
+
+/* Login page */
+.login-box {
+	margin: auto;
+	margin-top: 20px;
+	padding: 10px;
+	width: 200px;
+}
+
+.login-box input {
+	width: 100%;
+	margin: 5px;
+}
+
+.login-box button {
+	margin-top: 5px;
+	margin-right: -5px;
+}

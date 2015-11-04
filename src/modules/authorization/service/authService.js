@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medicalDiagnosis.services')
+angular.module('medicalDiagnosis.authorization')
 	.provider('AuthService', function AuthServiceProvider() {
 
 		this.$get = ['$log', '$state', function AuthServiceFactory($log, $state) {

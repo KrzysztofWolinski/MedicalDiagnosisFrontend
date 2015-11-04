@@ -5,17 +5,23 @@ angular.module('medicalDiagnosis')
         '$stateProvider',
         function($stateProvider) {
 
-            var checkAuthorization = ['$injector', 'AuthService', '$state', function($injector, AuthService, $state) {
+            var checkIsAuthorized = ['$injector', 'AuthService', '$state', function($injector, AuthService, $state) {
                 if (!AuthService.checkAuthorization()) {
                     $state.go('login');
                 }
-                    
+            }];
+
+            var checkIsNotAuthorized = ['$injector', 'AuthService', '$state', function($injector, AuthService, $state) {
+                if (AuthService.checkAuthorization()) {
+                    $state.go('home');
+                }
             }];
 
             $stateProvider
                 .state('login', {
                     url: '/login',
-                    templateUrl: 'partials/login.html',
+                    templateUrl: 'modules/authorization/view/login.html',
+                    onEnter: checkIsNotAuthorized,
                     data: {
                         showMenu: false
                     }
@@ -23,32 +29,32 @@ angular.module('medicalDiagnosis')
                 
                 .state('home', {
                     url: '/home',
-                    templateUrl: 'partials/home.html',
-                    onEnter: checkAuthorization,
+                    templateUrl: 'modules/navigation/view/home.html',
+                    onEnter: checkIsAuthorized,
                     data: {
                         showMenu: true
                     }
                 })
                 .state('diagnosis', {
                     url: '/diagnosis',
-                    templateUrl: 'partials/diagnosis.html',
-                    onEnter: checkAuthorization,
+                    templateUrl: 'modules/diagnosis/view/diagnosis.html',
+                    onEnter: checkIsAuthorized,
                     data: {
                         showMenu: true
                     }
                 })
                 .state('profile', {
                     url: '/profile',
-                    templateUrl: 'partials/profile.html',
-                    onEnter: checkAuthorization,
+                    templateUrl: 'modules/profile/view/profile.html',
+                    onEnter: checkIsAuthorized,
                     data: {
                         showMenu: true
                     }
                 })
-                .state('about', {
-                    url: '/about',
-                    templateUrl: 'partials/about.html',
-                    onEnter: checkAuthorization,
+                .state('history', {
+                    url: '/history',
+                    templateUrl: 'modules/history/view/history.html',
+                    onEnter: checkIsAuthorized,
                     data: {
                         showMenu: true
                     }

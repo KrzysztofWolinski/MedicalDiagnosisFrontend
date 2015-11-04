@@ -16,23 +16,30 @@
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
     <!-- Config -->
-    <script src="js/Config.js"></script>
-    <script src="js/Router.js"></script>
+    <script src="config/Config.js"></script>
+    <script src="config/Router.js"></script>
 
-    <!-- Controllers -->
-    <script src="js/controllers/homeController.js"></script>
-    <script src="js/controllers/notificationsController.js"></script>
-    <script src="js/controllers/aboutController.js"></script>
-    <script src="js/controllers/navigationController.js"></script>
-    <script src="js/controllers/loginController.js"></script>
+    <!-- Diagnosis -->
+    <script src="modules/diagnosis/view/diagnosisController.js"></script>
 
-    <!-- Services -->
-    <script src="js/services/AuthService.js"></script>
+    <!-- History -->
+    <script src="modules/history/view/historyController.js"></script>
+
+    <!-- Navigation -->
+    <script src="modules/navigation/view/homeController.js"></script>
+    <script src="modules/navigation/view/navigationController.js"></script>
+
+    <!-- Profile -->
+    <script src="modules/profile/view/profileController.js"></script>
+
+    <!-- Authorization -->    
+    <script src="modules/authorization/view/loginController.js"></script>
+    <script src="modules/authorization/service/authService.js"></script>
 
 </head>
 
 <body>
-    <div ng-include="'partials/navigation.html'"></div>
+    <div ng-include="'modules/navigation/view/navigation.html'"></div>
 
     <div class="container-fluid">
         <div class="text-center">

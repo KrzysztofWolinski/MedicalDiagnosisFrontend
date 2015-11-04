@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('medicalDiagnosis.controllers')
+angular.module('medicalDiagnosis.navigation')
 	.controller('navigationController', [
 		'$scope',
 		'$state',
