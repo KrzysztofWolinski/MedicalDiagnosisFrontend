@@ -6,15 +6,19 @@ angular.module('medicalDiagnosis')
         function($stateProvider) {
 
             var checkIsAuthorized = ['$injector', 'AuthService', '$state', function($injector, AuthService, $state) {
-                if (!AuthService.checkAuthorization()) {
-                    $state.go('login');
-                }
+                AuthService.checkAuthorization().then(function(authorized) {
+                    if (authorized !== true) {
+                        $state.go('login');
+                    }
+                });
             }];
 
             var checkIsNotAuthorized = ['$injector', 'AuthService', '$state', function($injector, AuthService, $state) {
-                if (AuthService.checkAuthorization()) {
-                    $state.go('home');
-                }
+                AuthService.checkAuthorization().then(function(authorized) {
+                    if (authorized === true) {
+                        $state.go('home');
+                    }
+                });
             }];
 
             $stateProvider
