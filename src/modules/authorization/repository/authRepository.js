@@ -7,6 +7,8 @@ angular.module('medicalDiagnosis.authorization')
 		'MEDICAL_DIAGNOSIS_URL',
 		function($http, $q, MEDICAL_DIAGNOSIS_URL) {
 
+			var APPLICATION_JSON_VALUE = 'application/json;charset=UTF-8';
+
 			var service = {
 				login: function(username, password) {
 					var deferred = $q.defer();
@@ -14,6 +16,9 @@ angular.module('medicalDiagnosis.authorization')
 					$http({
 							method: 'POST',
 							url: MEDICAL_DIAGNOSIS_URL + '/auth/login',
+							headers: {
+								'Content-Type': APPLICATION_JSON_VALUE
+							},
 							data: {
 								username: username,
 								password: password
@@ -34,6 +39,9 @@ angular.module('medicalDiagnosis.authorization')
 					$http({
 							method: 'POST',
 							url: MEDICAL_DIAGNOSIS_URL + '/auth/logout',
+							headers: {
+								'Content-Type': APPLICATION_JSON_VALUE
+							},
 							data: {
 								username: username,
 								token: token
@@ -54,6 +62,9 @@ angular.module('medicalDiagnosis.authorization')
 					$http({
 							method: 'POST',
 							url: MEDICAL_DIAGNOSIS_URL + '/auth/check',
+							headers: {
+								'Content-Type': APPLICATION_JSON_VALUE
+							},
 							data: {
 								username: username,
 								token: token

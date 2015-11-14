@@ -62,6 +62,10 @@ angular.module('medicalDiagnosis.authorization')
 					if ((user.username !== '') && (user.token !== '')) {
 						authRepository.checkAuthorization(user.username, user.token).then(function(response) {
 							if (response.status === AUTH_RESPONSE_STATUS.ok) {
+								if ((response.token !== '') && (response.token !== null)) {
+									user.token = response.token;
+								}
+
 								deferred.resolve(true);
 							} else {
 								deferred.resolve(false);
