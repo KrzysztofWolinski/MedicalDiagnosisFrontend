@@ -19,3 +19,9 @@
 	margin-top: 5px;
 	margin-right: -5px;
 }
+
+.login-failed {
+	color: #dd1111;
+	margin-top: 10px;
+	text-align: center;
+}

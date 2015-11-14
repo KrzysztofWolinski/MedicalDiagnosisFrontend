@@ -1,6 +1,10 @@
 <div ng-controller="loginController">
 	
-	<div class="login-box">
+	<div ng-show="loginFailed" class="login-failed">
+		The credentials you provided were incorect
+	</div>
+
+	<form class="login-box">
 		
 		<div class="pull-left">
 			<label>Username:</label>
@@ -10,11 +14,11 @@
 			<input id="password" type="password" ng-model="user.password">
 		</div>
 
-		<div class="pull-right" ng-show="isSubmitButtonEnabled()">
-			<button classs="btn btn-small" ng-click="login(user.username, user.password)">
+		<div class="pull-right" ng-show="isSubmitEnabled()">
+			<button classs="btn btn-small" ng-click="login()">
 				Login
 			</button>
 		</div>
-	</div>
+	</form>
 
 </div>
