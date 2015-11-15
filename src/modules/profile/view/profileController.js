@@ -46,6 +46,7 @@ angular.module('medicalDiagnosis.profile')
 			function cancel() {
 				$scope.user = angular.copy($scope.backupUser);
 				$scope.editingEnabled = false;
+				$scope.state = $scope.states.ok;
 			}
 
 			function init() {
