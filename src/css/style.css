@@ -2,6 +2,11 @@
     font-family: museo-slab, Georgia, "Times New Roman", Times, serif;
 }
 
+/* Home page */
+.home-header {
+	margin-top: 20px;
+}
+
 /* Login page */
 .login-box {
 	margin: auto;
@@ -24,4 +29,29 @@
 	color: #dd1111;
 	margin-top: 10px;
 	text-align: center;
+}
+
+/* Profile page */
+.profile-header {
+}
+
+.profile-form {
+	padding: 20px;
+	min-height: 200px;
+}
+
+.profile-feedback {
+	text-align: right;
+}
+
+.profile-feedback .success {
+	color: #22dd22;
+}
+
+.profile-feedback .error {
+	color: #dd1111;
+}
+
+.profile-buttons {
+	text-align: right;
 }

@@ -1,5 +1,113 @@
 <div ng-controller="profileController">
 
-	Profile
+	<div class="profile-header">
+		<h1>Profile</h1>
+		<p>In the following section you can provide the system with your personal data</p>
+	</div>
+
+	<div class="profile-form ">
+
+		<div class="row">
+			<h2>Personal data:</h2>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<label>Name: </label>
+				</div>
+			<div class="col-md-8">
+				<input type="text" ng-model="user.name" ng-disabled="!editingEnabled">
+				<span ng-show="user.name !== backupUser.name">*</span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<label>Surname: </label>
+				</div>
+			<div class="col-md-8">
+				<input type="text" ng-model="user.surname" ng-disabled="!editingEnabled">
+				<span ng-show="user.surname !== backupUser.surname">*</span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<label>Pesel: </label>
+				</div>
+			<div class="col-md-8">
+				<input type="text" ng-model="user.pesel" ng-disabled="!editingEnabled">
+				<span ng-show="user.pesel !== backupUser.pesel">*</span>
+			</div>
+		</div>
+
+		<div class="row">
+			<h2>Address:</h2>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<label>Street: </label>
+				</div>
+			<div class="col-md-8">
+				<input type="text" ng-model="user.address.street" ng-disabled="!editingEnabled">
+				<span ng-show="user.address.street !== backupUser.address.street">*</span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<label>House number: </label>
+				</div>
+			<div class="col-md-8">
+				<input type="text" ng-model="user.address.houseNumber" ng-disabled="!editingEnabled">
+				<span ng-show="user.address.houseNumber !== backupUser.address.houseNumber">*</span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<label>Flat number: </label>
+				</div>
+			<div class="col-md-8">
+				<input type="text" ng-model="user.address.flatNumber" ng-disabled="!editingEnabled">
+				<span ng-show="user.address.flatNumber !== backupUser.address.flatNumber">*</span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<label>Postal code: </label>
+				</div>
+			<div class="col-md-8">
+				<input type="text" ng-model="user.address.postalCode" ng-disabled="!editingEnabled">
+				<span ng-show="user.address.postalCode !== backupUser.address.postalCode">*</span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-4">
+				<label>City: </label>
+				</div>
+			<div class="col-md-8">
+				<input type="text" ng-model="user.address.city" ng-disabled="!editingEnabled">
+				<span ng-show="user.address.city !== backupUser.address.city">*</span>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row">
+		<div class="profile-feedback col-md-10">
+			<div class="success" ng-show="state === states.success">Saving complete</div>
+			<div class="error" ng-show="state === states.error">Error occured while saving</div>
+		</div>
+
+		<div class="profile-buttons col-md-2">
+			<button ng-show="!editingEnabled" class="btn btn-small btn-black" ng-click="control.toggleEdit()">Edit</button>
+			<button ng-show="editingEnabled" class="btn btn-small btn-black" ng-click="control.submit()">Submit</button>
+			<button ng-show="editingEnabled" class="btn btn-small btn-grey" ng-click="control.cancel()">Cancel</button>
+		</div>
+	</div>
 
 </div>

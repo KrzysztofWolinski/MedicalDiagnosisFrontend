@@ -17,10 +17,20 @@ angular.module('medicalDiagnosis.authorization')
 				};
 
 				var service = {
+					getUsername: getUsername,
+					getToken: getToken,
 					login: login,
 					logout: logout,
 					checkAuthorization: checkAuthorization
 				};
+
+				function getUsername() {
+					return user.username;
+				}
+
+				function getToken() {
+					return user.token;
+				}
 
 				function login(username, password) {
 					var deferred = $q.defer();
@@ -34,8 +44,10 @@ angular.module('medicalDiagnosis.authorization')
 
 							deferred.resolve(AUTH_RESPONSE_STATUS.ok);
 						} else {
-							deferred.resolve(AUTH_RESPONSE_STATUS.error);
+							deferred.resolve(AUTH_RESPONSE_STATUS.invalid);
 						}
+					}, function() {
+						deferred.resolve(AUTH_RESPONSE_STATUS.error);
 					});
 
 					return deferred.promise;
@@ -51,6 +63,8 @@ angular.module('medicalDiagnosis.authorization')
 						$state.go('login');
 
 						deferred.resolve(response.status);
+					}, function() {
+						deferred.resolve(AUTH_RESPONSE_STATUS.error);
 					});
 
 					return deferred.promise;
@@ -70,6 +84,8 @@ angular.module('medicalDiagnosis.authorization')
 							} else {
 								deferred.resolve(false);
 							}
+						}, function() {
+							deferred.resolve(AUTH_RESPONSE_STATUS.error);
 						});
 					} else {
 						deferred.resolve(false);
