@@ -10,6 +10,7 @@ angular.module('medicalDiagnosis.history', []);
 
 angular.module('medicalDiagnosis', [
 	'ui.router',
+	'ui.utils.masks',
 	'medicalDiagnosis.authorization',
 	'medicalDiagnosis.navigation',
 	'medicalDiagnosis.profile',

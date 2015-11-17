@@ -2,6 +2,14 @@
     font-family: museo-slab, Georgia, "Times New Roman", Times, serif;
 }
 
+.success {
+	color: #22dd22;
+}
+
+.error {
+	color: #dd1111;
+}
+
 /* Home page */
 .home-header {
 	margin-top: 20px;
@@ -44,14 +52,16 @@
 	text-align: right;
 }
 
-.profile-feedback .success {
-	color: #22dd22;
-}
-
-.profile-feedback .error {
-	color: #dd1111;
-}
-
 .profile-buttons {
 	text-align: right;
 }
+
+/** Diagnosis */
+.diagnosis-page-body {
+	margin: 10px;
+}
+
+.diagnosis-input {
+	width: 150px;
+}
+

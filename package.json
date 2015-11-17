@@ -2,7 +2,7 @@
   "name": "medical-diagnosis-frontend",
   "private": true,
   "version": "0.1.0",
-  "description": "Medical diagnosis tool",
+  "description": "Medical diagnosis Frontend",
   "repository": "https://github.com/angular/angular-seed",
   "devDependencies": {
     "bower": "^1.3.1",
