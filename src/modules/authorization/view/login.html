@@ -1,12 +1,14 @@
 
 <div ng-controller="loginController">
 	
-	<div ng-show="state === states.invalid" class="login-failed">
-		The credentials you provided were incorect
-	</div>
+	<div class="login-header">
+		<div ng-show="state === states.invalid" class="login-failed">
+			The credentials you provided were incorect
+		</div>
 
-	<div ng-show="state === states.error" class="login-failed">
-		There was an error connecting to the server, try again
+		<div ng-show="state === states.error" class="login-failed">
+			There was an error connecting to the server, try again
+		</div>
 	</div>
 
 	<form class="login-box">

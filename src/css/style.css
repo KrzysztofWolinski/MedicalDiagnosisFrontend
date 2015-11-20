@@ -16,6 +16,11 @@
 }
 
 /* Login page */
+.login-header {
+	height: 20px;
+	margin-top: 10px;
+}
+
 .login-box {
 	margin: auto;
 	margin-top: 20px;
@@ -35,7 +40,6 @@
 
 .login-failed {
 	color: #dd1111;
-	margin-top: 10px;
 	text-align: center;
 }
 

@@ -32,7 +32,7 @@ angular.module('medicalDiagnosis.diagnosis')
 			function init() {
 				$scope.state = $scope.states.loading;
 				diagnosisRepository.getForm().then(function(response) {
-					$scope.formData = response.formFields;
+					$scope.formData = response.formFieldGroups;
 					$scope.state = $scope.states.ok;
 				}, function() {
 					$scope.state = $scope.states.error;

@@ -37,7 +37,7 @@ angular.module('medicalDiagnosis.diagnosis')
 					var deferred = $q.defer();
 
 					var data = {
-						formFields: formFields
+						formFieldGroups: formFields
 					};
 
 					$http({
