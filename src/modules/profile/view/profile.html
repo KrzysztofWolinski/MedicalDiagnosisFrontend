@@ -1,8 +1,10 @@
 <div ng-controller="profileController">
 
 	<div class="profile-header">
-		<h1>Profile</h1>
-		<p>In the following section you can provide the system with your personal data</p>
+		<h1>
+			Profile <span ng-show="state === states.loading" class="loader"></span>
+		</h1>
+		<p>In the following section you can provide the system with your personal data</p>	
 	</div>
 
 	<div class="profile-form ">

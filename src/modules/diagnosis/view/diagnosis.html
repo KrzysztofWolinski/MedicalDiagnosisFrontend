@@ -1,7 +1,9 @@
 <div ng-controller="diagnosisController">
 	
 	<div class="diagnosis-header">
-		<h1>Diagnosis</h1>
+		<h1>
+			Diagnosis <span ng-show="state === states.loading || state === states.submitting" class="loader"></span>
+		</h1>
 		<p>In the following section you can provide the system with your current health data, and perform a diagnosis</p>
 	</div>
 

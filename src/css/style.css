@@ -2,6 +2,13 @@
     font-family: museo-slab, Georgia, "Times New Roman", Times, serif;
 }
 
+.loader {
+    position: absolute;
+    min-height: 32px;
+    min-width: 32px;
+    background: url('../img/loader.gif') no-repeat center center;
+}
+
 .success {
 	color: #22dd22;
 }

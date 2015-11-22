@@ -9,6 +9,10 @@
 		<div ng-show="state === states.error" class="login-failed">
 			There was an error connecting to the server, try again
 		</div>
+
+		<div ng-show="state === states.loading" style="text-align: center">
+			<span class="loader"></span>
+		</div>
 	</div>
 
 	<form class="login-box">
