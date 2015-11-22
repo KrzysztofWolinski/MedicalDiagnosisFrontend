@@ -25,7 +25,7 @@ angular.module('medicalDiagnosis.diagnosis')
 				});
 			};
 
-			$scope.submitAndDiagnose = function() {
+			$scope.diagnose = function() {
 				// TODO
 			};
 
@@ -34,6 +34,7 @@ angular.module('medicalDiagnosis.diagnosis')
 				diagnosisRepository.getForm().then(function(response) {
 					$scope.formData = response.formFieldGroups;
 					$scope.state = $scope.states.ok;
+					$scope.activeTab = 'submit';
 				}, function() {
 					$scope.state = $scope.states.error;
 				});
