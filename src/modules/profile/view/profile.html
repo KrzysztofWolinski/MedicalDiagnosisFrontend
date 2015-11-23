@@ -7,6 +7,33 @@
 		<p>In the following section you can provide the system with your personal data</p>	
 	</div>
 
+	<hr>
+	<div class="row profile-buttons">
+		<div class="col-md-9">
+			<div ng-show="state === states.loading" class="pull-right">
+				Loading...
+			</div>
+
+			<div ng-show="state === states.submitting" class="pull-right">
+				Submitting...
+			</div>
+
+			<div ng-show="state === states.error" class="pull-right error">
+				Error!
+			</div>
+
+			<div ng-show="state === states.success" class="pull-right success">
+				Success!
+			</div>
+		</div>
+
+		<div class="md-col-3">
+			<button ng-show="!editingEnabled" class="btn btn-small btn-black" ng-click="control.toggleEdit()">Edit</button>
+			<button ng-show="editingEnabled" class="btn btn-small btn-black" ng-click="control.submit()">Submit</button>
+			<button ng-show="editingEnabled" class="btn btn-small btn-grey" ng-click="control.cancel()">Cancel</button>
+		</div>
+	</div>
+
 	<div class="profile-form ">
 
 		<div class="row">
@@ -96,21 +123,6 @@
 			</div>
 		</div>
 
-	</div>
-
-	<hr>
-	
-	<div class="row">
-		<div class="profile-feedback col-md-10">
-			<div class="success" ng-show="state === states.success">Saving complete</div>
-			<div class="error" ng-show="state === states.error">Error occured while saving</div>
-		</div>
-
-		<div class="profile-buttons col-md-2">
-			<button ng-show="!editingEnabled" class="btn btn-small btn-black" ng-click="control.toggleEdit()">Edit</button>
-			<button ng-show="editingEnabled" class="btn btn-small btn-black" ng-click="control.submit()">Submit</button>
-			<button ng-show="editingEnabled" class="btn btn-small btn-grey" ng-click="control.cancel()">Cancel</button>
-		</div>
 	</div>
 
 </div>

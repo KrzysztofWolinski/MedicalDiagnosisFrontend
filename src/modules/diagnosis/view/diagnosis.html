@@ -8,9 +8,34 @@
 	</div>
 
 	<ul class="nav nav-tabs">
-		<li role="presentation" ng-class="{'active' : activeTab === 'submit'}"><a href="" ng-click="activeTab = 'submit'">Submit data</a></li>
-		<li role="presentation" ng-class="{'active' : activeTab === 'diagnose'}"><a href="" ng-click="activeTab = 'diagnose'">Diagnose</a></li>
+		<li role="presentation" ng-class="{'active' : activeTab === 'submit'}"><a href="" ng-click="selectTab('submit')">Submit data</a></li>
+		<li role="presentation" ng-class="{'active' : activeTab === 'diagnose'}"><a href="" ng-click="selectTab('diagnose')">Diagnose</a></li>
 	</ul>
+
+	<div class="row diagnosis-buttons">
+		<div class="col-md-9">
+			<div ng-show="state === states.loading" class="pull-right">
+				Loading...
+			</div>
+
+			<div ng-show="state === states.submitting" class="pull-right">
+				Submitting...
+			</div>
+
+			<div ng-show="state === states.error" class="pull-right error">
+				Error!
+			</div>
+
+			<div ng-show="state === states.success" class="pull-right success">
+				Success!
+			</div>
+		</div>
+
+		<div class="md-col-3">
+			<button ng-show="activeTab === 'submit'" ng-disabled="state !== states.ok" class="btn btn-small btn-grey" ng-click="submitForm()">Submit</button>
+			<button ng-show="activeTab === 'diagnose'" ng-disabled="state !== states.ok" class="btn btn-small btn-grey" ng-click="diagnose()">Diagnose</button>
+		</div>
+	</div>
 
 	<div ng-show="activeTab === 'submit'">
 		<!-- Generated data form -->
@@ -59,60 +84,26 @@
 		</div>
 		<hr>
 
-		<div class="row diagnosis-buttons">
-			<div class="col-md-9">
-				<div ng-show="state === states.loading" class="diagnosis-page-body pull-right">
-					Loading...
-				</div>
-
-				<div ng-show="state === states.submitting" class="diagnosis-page-body pull-right">
-					Submitting...
-				</div>
-
-				<div ng-show="state === states.error" class="diagnosis-page-body pull-right error">
-					Error!
-				</div>
-
-				<div ng-show="state === states.success" class="diagnosis-page-body pull-right success">
-					Success!
-				</div>
-			</div>
-
-			<div class="md-col-3">
-				<button ng-disabled="state !== states.ok" class="btn btn-small btn-grey" ng-click="submitForm()">Submit</button>
-			</div>
-		</div>
 	</div>
 
 	<!-- Diagnosis -->
-	<div activeTab === 'diagnosis'>
-		<div class="diagnosis-page-body">
-			<div ng-include="diagnosis-results.html"></div>
+	<div ng-show="activeTab === 'diagnose'">
+		<div ng-show="state === states.ok" class="diagnosis-page-body">
+			Press the following button to invoke the process of diagnosis. 
 		</div>
 
-		<div class="row diagnosis-buttons">
-			<div class="col-md-9">
-				<div ng-show="state === states.loading" class="diagnosis-page-body pull-right">
-					Loading...
-				</div>
-
-				<div ng-show="state === states.submitting" class="diagnosis-page-body pull-right">
-					Submitting...
-				</div>
-
-				<div ng-show="state === states.error" class="diagnosis-page-body pull-right error">
-					Error!
-				</div>
-
-				<div ng-show="state === states.success" class="diagnosis-page-body pull-right success">
-					Success!
-				</div>
-			</div>
-
-			<div class="md-col-3">
-				<button ng-disabled="state !== states.ok" class="btn btn-small btn-grey" ng-click="diagnose()">Diagnose</button>
-			</div>
+		<div ng-show="state === states.success" class="diagnosis-page-body">
+			TODO diagnosis successful!
 		</div>
+
+		<div ng-show="state === states.error" class="diagnosis-page-body">
+			<div class="error">
+				<p>Something went wrong</p>
+			</div>
+
+			<p>Please check if you have submitted any data befeore invoking the diagnosis. If not, please do so and try again later. If this doesn't help, please contact the system administrator.</p>
+		</div>
+
 	</div>
 
 </div>

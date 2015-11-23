@@ -60,15 +60,17 @@
 }
 
 .profile-feedback {
+	margin-top: 10px;
 	text-align: right;
 }
 
 .profile-buttons {
-	text-align: right;
+	margin-top: 10px;
 }
 
 /** Diagnosis */
 .diagnosis-page-body {
+	min-height: 100px;
 	margin: 10px;
 }
 
@@ -76,3 +78,6 @@
 	width: 150px;
 }
 
+.diagnosis-buttons {
+	margin-top: 10px;
+}

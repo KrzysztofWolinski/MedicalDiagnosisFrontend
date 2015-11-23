@@ -26,7 +26,23 @@ angular.module('medicalDiagnosis.diagnosis')
 			};
 
 			$scope.diagnose = function() {
-				// TODO
+				$scope.state = $scope.states.loading;
+				diagnosisRepository.performDiagnosis().then(function(response) {
+					$scope.state = $scope.states.success;
+					// TODO display results
+
+				}, function() {
+					$scope.state = $scope.states.error;
+				});
+			};
+
+			$scope.selectTab = function(tab) {
+				if (($scope.state !== $scope.states.submitting) && ($scope.state !== $scope.states.loading)) {
+					if ($scope.activeTab !== tab) {
+						$scope.activeTab = tab;
+						$scope.state = $scope.states.ok;
+					}
+				}
 			};
 
 			function init() {
