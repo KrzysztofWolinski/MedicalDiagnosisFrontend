@@ -81,3 +81,10 @@
 .diagnosis-buttons {
 	margin-top: 10px;
 }
+
+/* History */
+.history-page-body {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	min-height: 100px;
+}

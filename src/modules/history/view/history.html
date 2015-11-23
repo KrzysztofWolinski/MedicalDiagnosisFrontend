@@ -7,4 +7,25 @@
 		<p>In the following section you can acces historic data and statistics</p>
 	</div>
 
+	<ul class="nav nav-tabs">
+		<li role="presentation" ng-class="{'active' : activeTab === 'by-date'}"><a href="" ng-click="selectTab('by-date')">Show by date</a></li>
+		<li role="presentation" ng-class="{'active' : activeTab === 'by-name'}"><a href="" ng-click="selectTab('by-name')">Show by name</a></li>
+	</ul>
+
+	<div ng-show="state !== states.error">
+		<div ng-show="activeTab === 'by-date'" class="history-page-body">
+			
+		</div>
+
+		<div ng-show="activeTab === 'by-name'" class="history-page-body">
+			
+		</div>
+	</div>
+
+	<div ng-show="state === states.error">
+		<div class="history-page-body">
+			<div class="error"><p>An error occured</p></div>
+		</div>
+	</div>
+
 </div>
