@@ -1,0 +1,33 @@
+<div>
+	
+	<!-- Loading -->
+	<div ng-show="state === states.loading">
+		Loading...
+	</div>
+
+	<!-- Error -->
+	<div ng-show="state === states.error" class="error">
+		An error occured while downloading the data
+	</div>
+
+	<!-- Empty data -->
+	<div ng-show="state === states.ok && (data.byDate.size === 0 || data.byDate === undefined)">
+		No data has been received. Please check if you have submitted any.
+	</div>
+
+	<!-- Non empty results-->
+	<div ng-show="state === states.ok && data.byDate.size > 0">
+
+		<div class="history-data-block" ng-repeat="(header, dataBlock) in data.byDate">
+			<h2>{{header}}</h2>
+
+			<div class="history-data-piece row" ng-repeat="piece in dataBlock.">
+				<div class="col-md-4">{{piece.name}}</div>
+				<div class="col-md-8">{{piece.value}}</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>

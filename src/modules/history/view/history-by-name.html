@@ -1,0 +1,23 @@
+<div>
+	
+	<!-- Loading -->
+	<div ng-show="state === states.loading">
+		Loading...
+	</div>
+
+	<!-- Error -->
+	<div ng-show="state === states.error" class="error">
+		An error occured while downloading the data
+	</div>
+
+	<!-- Empty data -->
+	<div ng-show="state === states.ok && (data.byName.size === 0 || data.byName === undefined)">
+		No data has been received. Please check if you have submitted any.
+	</div>
+
+	<!-- Non empty results-->
+	<div ng-show="state === states.ok && data.byName.size > 0">
+
+	</div>
+	
+</div>

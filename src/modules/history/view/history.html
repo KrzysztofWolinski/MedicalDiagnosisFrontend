@@ -10,15 +10,20 @@
 	<ul class="nav nav-tabs">
 		<li role="presentation" ng-class="{'active' : activeTab === 'by-date'}"><a href="" ng-click="selectTab('by-date')">Show by date</a></li>
 		<li role="presentation" ng-class="{'active' : activeTab === 'by-name'}"><a href="" ng-click="selectTab('by-name')">Show by name</a></li>
+		<li role="presentation" ng-class="{'active' : activeTab === 'diagnoses'}"><a href="" ng-click="selectTab('diagnoses')">Past diagnoses results</a></li>
 	</ul>
 
 	<div ng-show="state !== states.error">
 		<div ng-show="activeTab === 'by-date'" class="history-page-body">
-			
+			<div ng-include="'modules/history/view/history-by-date.html'"></div>
 		</div>
 
 		<div ng-show="activeTab === 'by-name'" class="history-page-body">
-			
+			<div ng-include="'modules/history/view/history-by-name.html'"></div>
+		</div>
+
+		<div ng-show="activeTab === 'diagnoses'" class="history-page-body">
+			<div ng-include="'modules/history/view/history-past-diagnoses.html'"></div>
 		</div>
 	</div>
 
