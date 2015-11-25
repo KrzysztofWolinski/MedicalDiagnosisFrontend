@@ -7,9 +7,15 @@ angular.module('medicalDiagnosis.navigation')
 		'AuthService',
 		function($scope, $state, AuthService) {
 			
+			$scope.logout = AuthService.logout;
 			$scope.state = $state;
 
-			$scope.logout = AuthService.logout;
-
+			$scope.isActiveState = function(requestedState) {
+				if ($scope.state.current.name.split('.')[0] === requestedState) {
+					return true;
+				} else {
+					return false;
+				}
+			};
 		}
 	]);

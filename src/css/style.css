@@ -17,6 +17,11 @@
 	color: #dd1111;
 }
 
+/* Navigation */
+.navigation-active {
+	color: #DDDDDD;
+}
+
 /* Home page */
 .home-header {
 	margin-top: 20px;
@@ -91,4 +96,8 @@
 
 .history-data-piece {
 	margin: 10px;
+}
+
+.history-footer {
+	min-height: 100px;
 }

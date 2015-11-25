@@ -6,21 +6,21 @@
         </a>
     </div>
     <ul ng-show="state.current.data.showMenu" class="text-right">
-        <li class="btn btn-lg" ui-sref="home">
+        <li class="btn btn-lg" ng-class="{'navigation-active' : isActiveState('home')}" ui-sref="home">
             <span class="glyphicon glyphicon-home"></span>
             Home
         </li>
 
-        <li class="btn btn-lg" ui-sref="profile">
+        <li class="btn btn-lg" ng-class="{'navigation-active' : isActiveState('profile')}" ui-sref="profile">
             <span class="glyphicon glyphicon-book"></span>
             My profile
         </li>
 
-        <li class="btn btn-lg" ui-sref="diagnosis">
+        <li class="btn btn-lg" ng-class="{'navigation-active' : isActiveState('diagnosis')}" ui-sref="diagnosis">
             <span class="glyphicon glyphicon-cloud"></span>
             Diagnosis
         </li>
-        <li class="btn btn-lg" ui-sref="history">
+        <li class="btn btn-lg" ng-class="{'navigation-active' : isActiveState('history')}" ui-sref="history">
             <span class="glyphicon glyphicon-book"></span>
             History
         </li>
