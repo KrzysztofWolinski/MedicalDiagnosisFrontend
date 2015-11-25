@@ -5,7 +5,7 @@
 	<name>MedicalDiagnosisFrontend</name>
 	<artifactId>MedicalDiagnosisFrontend</artifactId>
 	<groupId>pl.pwr</groupId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.9-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<build>

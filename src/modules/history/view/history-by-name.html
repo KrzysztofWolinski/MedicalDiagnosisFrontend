@@ -21,8 +21,8 @@
 		<div class="history-data-block" ng-repeat="dataBlock in data | orderBy : 'name'">
 			<h2>{{dataBlock.name}}</h2>
 
-			<div class="history-data-piece row" ng-repeat="piece in dataBlock.dataPieces | orderBy : 'date'">
-				<div class="col-md-4">{{piece.date | date : 'yyyy-MM-dd hh:mm'}}</div>
+			<div class="history-data-piece row" ng-repeat="piece in dataBlock.dataPieces | orderBy : '-date'">
+				<div class="col-md-4">{{piece.date | date : 'yyyy-MM-dd HH:mm'}}</div>
 				<div class="col-md-8">{{(piece.value === null ? '-' : piece.value)}}</div>
 			</div>
 
