@@ -11,12 +11,22 @@
 	</div>
 
 	<!-- Empty data -->
-	<div ng-show="state === states.ok && (data.byName.size === 0 || data.byName === undefined)">
+	<div ng-show="state === states.ok && (data.length === 0 || data === undefined)">
 		No data has been received. Please check if you have submitted any.
 	</div>
 
 	<!-- Non empty results-->
-	<div ng-show="state === states.ok && data.byName.size > 0">
+	<div ng-show="state === states.ok && data.length > 0">
+
+		<div class="history-data-block" ng-repeat="dataBlock in data">
+			<h2>{{dataBlock.name}}</h2>
+
+			<div class="history-data-piece row" ng-repeat="piece in dataBlock.dataPieces">
+				<div class="col-md-4">{{piece.date}}</div>
+				<div class="col-md-8">{{(piece.value === null ? '-' : piece.value)}}</div>
+			</div>
+
+		</div>
 
 	</div>
 	

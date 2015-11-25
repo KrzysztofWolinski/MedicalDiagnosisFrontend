@@ -42,9 +42,10 @@ angular.module('medicalDiagnosis.history')
 					request = historyRepository.getHistoricDataDiagnoses();
 				}
 
-				request.then(function(response) {
+				request.then(function(data) {
 					$scope.state = $scope.states.ok;
-					// TODO data
+
+					$scope.data = data;
 				}, function(){
 					$scope.state = $scope.states.error;	
 				});

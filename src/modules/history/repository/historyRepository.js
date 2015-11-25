@@ -23,8 +23,8 @@ angular.module('medicalDiagnosis.history')
 							token: AuthService.getToken()
 						}
 					})
-					.success(function(data) {
-						deferred.resolve(data);
+					.success(function(response) {
+						deferred.resolve(response.data);
 					})
 					.error(function() {
 						deferred.reject();
