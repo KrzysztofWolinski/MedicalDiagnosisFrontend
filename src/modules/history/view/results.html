@@ -1,0 +1,72 @@
+<div ng-controller="resultsController">
+
+	<button ng-disabled="isSubmitting" class="btn btn-small btn-default" ui-sref="history">
+		<!--<span class="glyphicon glyphicon-menu-left"></span> -->
+		Back
+	</button>
+
+	<!-- Loading -->
+	<div ng-show="state === states.loading">Loading...</div>
+
+	<!-- Error -->
+	<div ng-show="state === states.error" class="error">An error occured while downloading the data</div>
+
+	
+	<div ng-show="state === states.ok" class="row">
+		<div class="col-md-4">
+			<h2>{{dataBlock.date | date : 'yyyy-MM-dd HH:mm'}}</h2>
+		</div>
+	</div>
+
+	<div class="history-data-piece row" ng-repeat="piece in dataBlock.data | orderBy : 'name'">
+		<div class="col-md-4">{{piece.name}}</div>
+		<div class="col-md-8">{{(piece.value === null ? '-' : piece.value)}}</div>
+	</div>
+
+	<hr>
+
+	<div class="row">
+		
+		<div class="col-10-md pull-right">
+			<div ng-show="!dataBlock.rated && !isEditing">
+				<button ng-disabled="isSubmitting" class="btn btn-small btn-default" ng-click="edit()">Review</button>
+				<button ng-disabled="isSubmitting || conditionProbability.length <= 0" class="btn btn-small btn-black" ng-click="accept()">Accept</button>
+			</div>
+
+			<div ng-show="!dataBlock.rated && isEditing">
+				<button ng-disabled="isSubmitting" class="btn btn-small btn-default" ng-click="cancel()">Cancel</button>
+				<button ng-disabled="isSubmitting || conditionProbability.length <= 0" class="btn btn-small btn-black" ng-click="accept()">Accept</button>
+			</div>
+
+			<div ng-show="dataBlock.rated">
+				<span class="glyphicon glyphicon-ok"></span>Accepted
+				<button ng-disabled="isSubmitting" class="btn btn-small btn-default" ng-click="edit()">Review</button>
+			</div>
+		</div>
+		<div class="col-md-2 pull-right">
+			<span ng-show="isSubmitting" class="loader"></span>
+			<span ng-show="isError" class="error">Error while submitting</span>
+		</div>
+
+		<p>Results:</p>
+
+		<div ng-show="!isEditing">
+			<div ng-repeat="record in conditionProbability">
+				{{record.diseaseName}} - {{record.probability}}%
+			</div>
+		</div>
+
+		<div ng-show="isEditing" style="margin-bottom: 50px;">
+			<div ng-repeat="record in conditionProbability">
+				<input ng-disabled="isSubmitting" type="text" ng-model="record.diseaseName">
+
+				<span ng-click="conditionProbability.splice($index, 1)" class="glyphicon glyphicon-minus-sign"></span>
+			</div>
+			
+			<span ng-click="conditionProbability.push({diseaseName: '', probability: '100'})" class="glyphicon glyphicon-plus-sign"></span>
+
+		</div>
+
+	</div>
+
+</div>

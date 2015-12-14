@@ -57,11 +57,19 @@ angular.module('medicalDiagnosis')
                 })
                 .state('history', {
                     url: '/history',
-                    templateUrl: 'modules/history/view/history.html',
                     onEnter: checkIsAuthorized,
+                    templateUrl: 'modules/history/view/history.html',
                     data: {
                         showMenu: true
                     }
-                });           
+                })
+                .state('results', {
+                    url: '/results/{id}',
+                    onEnter: checkIsAuthorized,
+                    templateUrl: 'modules/history/view/results.html',
+                    data: {
+                        showMenu: true
+                    }
+                });  
         }
     ]);

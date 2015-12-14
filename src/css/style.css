@@ -94,6 +94,12 @@
 	min-height: 100px;
 }
 
+.history-data-block {
+	margin: 5px;
+	padding: 5px;
+	background-color: #FCFCFC;
+}
+
 .history-data-piece {
 	margin: 10px;
 }

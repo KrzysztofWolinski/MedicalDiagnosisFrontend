@@ -19,7 +19,17 @@
 	<div ng-show="state === states.ok && data.length > 0">
 
 		<div class="history-data-block" ng-repeat="dataBlock in data | orderBy : '-date'">
-			<h2>{{dataBlock.date | date : 'yyyy-MM-dd HH:mm'}}</h2>
+			<div class="row">
+				<div class="col-md-4">
+					<h2>{{dataBlock.date | date : 'yyyy-MM-dd HH:mm'}}</h2>
+				</div>
+				<div class="col-md-8">
+					<h2>
+						<button class="btn btn-small btn-black" ui-sref="results({id: dataBlock.dataId})">Show results</button>
+						<span ng-show="dataBlock.rated" class="glyphicon glyphicon-ok-circle"></span>
+					</h2>
+				</div>
+			</div>
 
 			<div class="history-data-piece row" ng-repeat="piece in dataBlock.data | orderBy : 'name'">
 				<div class="col-md-4">{{piece.name}}</div>

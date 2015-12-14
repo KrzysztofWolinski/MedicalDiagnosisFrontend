@@ -33,6 +33,56 @@ angular.module('medicalDiagnosis.history')
 				return deferred.promise;
 			}
 
+			function getHistoricDataResult(id) {
+				var deferred = $q.defer();
+
+				$http({
+						method: 'POST',
+						url: MEDICAL_DIAGNOSIS_URL + '/history/results',
+						headers: {
+							'Content-Type': APPLICATION_JSON_VALUE
+						},
+						data: {
+							dataId: id,
+							username: AuthService.getUsername(),
+							token: AuthService.getToken()
+						}
+					})
+					.success(function(response) {
+						deferred.resolve(response.data);
+					})
+					.error(function() {
+						deferred.reject();
+					});
+
+				return deferred.promise;
+			}
+
+			function submitResultReview(dataId, reviewedDiagnosis) {
+				var deferred = $q.defer();
+
+				$http({
+						method: 'POST',
+						url: MEDICAL_DIAGNOSIS_URL + '/history/review',
+						headers: {
+							'Content-Type': APPLICATION_JSON_VALUE
+						},
+						data: {
+							dataId: dataId,
+							newConditionProbabilities: reviewedDiagnosis,
+							username: AuthService.getUsername(),
+							token: AuthService.getToken()
+						}
+					})
+					.success(function(response) {
+						deferred.resolve(response.data);
+					})
+					.error(function() {
+						deferred.reject();
+					});
+
+				return deferred.promise;	
+			}
 
 			var service = {
 				getHistoricDataByDate: function() {
@@ -43,6 +93,12 @@ angular.module('medicalDiagnosis.history')
 				},
 				getHistoricDataDiagnoses: function() {
 					return sendHistoricDataRequest('diagnoses');
+				},
+				getHistoricDataResult: function(id) {
+					return getHistoricDataResult(id);
+				},
+				submitResultReview: function(dataId, reviewedDiagnosis) {
+					return submitResultReview(dataId, reviewedDiagnosis);
 				}
 			};
 
