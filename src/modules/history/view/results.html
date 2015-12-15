@@ -48,7 +48,14 @@
 			<span ng-show="isError" class="error">Error while submitting</span>
 		</div>
 
-		<p>Results:</p>
+		<div ng-show="!isEditing">
+			<div ng-show="conditionProbability.length > 0">
+				<p>Results:</p>
+			</div>
+			<div ng-show="conditionProbability.length === 0">
+				<p>No data</p>
+			</div>
+		</div>
 
 		<div ng-show="!isEditing">
 			<div ng-repeat="record in conditionProbability">
@@ -57,13 +64,14 @@
 		</div>
 
 		<div ng-show="isEditing" style="margin-bottom: 50px;">
-			<div ng-repeat="record in conditionProbability">
-				<input ng-disabled="isSubmitting" type="text" ng-model="record.diseaseName">
 
-				<span ng-click="conditionProbability.splice($index, 1)" class="glyphicon glyphicon-minus-sign"></span>
-			</div>
-			
-			<span ng-click="conditionProbability.push({diseaseName: '', probability: '100'})" class="glyphicon glyphicon-plus-sign"></span>
+			<select ng-model="selectedCondition" ng-options="selected for selected in conditionList"></select>
+			<span ng-click="addCondition(selectedCondition)" class="glyphicon glyphicon-plus-sign"></span>
+
+			<div ng-repeat="record in conditionProbability">
+				<input disabled type="text" ng-model="record.diseaseName">
+				<span ng-click="removeCondition($index)" class="glyphicon glyphicon-minus-sign"></span>
+			</div>	
 
 		</div>
 

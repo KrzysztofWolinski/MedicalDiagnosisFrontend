@@ -17,6 +17,8 @@ angular.module('medicalDiagnosis.history')
 			$scope.isSubmitting = false;
 			$scope.isError = false;
 
+			$scope.conditionList = [];
+
 			var backupConditionsProbability;
 			var backupRated;
 
@@ -51,8 +53,30 @@ angular.module('medicalDiagnosis.history')
 					$scope.isSubmitting = false;
 					$scope.isError = true;
 				});		
-				
 			};
+
+			$scope.addCondition = function(diseaseName) {
+				if (diseaseName !== '') {
+
+					var exists = false;
+					angular.forEach($scope.conditionProbability, function(entry) {
+						if (entry.diseaseName === diseaseName) {
+							exists = true;
+						}
+					});
+
+					if (!exists) {
+						$scope.conditionProbability.push({
+							diseaseName: diseaseName, 
+							probability: '100'
+						});
+					}
+				}
+			};
+
+			$scope.removeCondition = function(index) {
+				$scope.conditionProbability.splice(index, 1);
+			}
 
 			function init() {
 				$scope.state = $scope.states.loading;
@@ -60,6 +84,12 @@ angular.module('medicalDiagnosis.history')
 					$scope.state = $scope.states.ok;
 					$scope.dataBlock = results.dataBlock;
 					$scope.conditionProbability = results.conditionProbability;
+				}, function() {
+					$scope.state = $scope.states.error;
+				});
+
+				historyRepository.getConditionsList().then(function(response) {
+					$scope.conditionList = response;
 				}, function() {
 					$scope.state = $scope.states.error;
 				});

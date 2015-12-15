@@ -84,6 +84,26 @@ angular.module('medicalDiagnosis.history')
 				return deferred.promise;	
 			}
 
+			function getConditionsList() {
+				var deferred = $q.defer();
+
+				$http({
+						method: 'GET',
+						url: MEDICAL_DIAGNOSIS_URL + '/diagnosis/conditions',
+						headers: {
+							'Content-Type': APPLICATION_JSON_VALUE
+						}
+					})
+					.success(function(response) {
+						deferred.resolve(response);
+					})
+					.error(function() {
+						deferred.reject();
+					});
+
+				return deferred.promise;
+			}
+
 			var service = {
 				getHistoricDataByDate: function() {
 					return sendHistoricDataRequest('by-date');
@@ -99,6 +119,9 @@ angular.module('medicalDiagnosis.history')
 				},
 				submitResultReview: function(dataId, reviewedDiagnosis) {
 					return submitResultReview(dataId, reviewedDiagnosis);
+				},
+				getConditionsList: function() {
+					return getConditionsList();
 				}
 			};
 

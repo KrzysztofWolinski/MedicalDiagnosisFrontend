@@ -8,8 +8,7 @@
 	</div>
 
 	<ul class="nav nav-tabs">
-		<li role="presentation" ng-class="{'active' : activeTab === 'submit'}"><a href="" ng-click="selectTab('submit')">Submit data</a></li>
-		<li role="presentation" ng-class="{'active' : activeTab === 'diagnose'}"><a href="" ng-click="selectTab('diagnose')">Diagnose</a></li>
+		<li role="presentation" class="active"><a href="" ng-click="selectTab('submit')">Submit data</a></li>
 	</ul>
 
 	<div class="row diagnosis-buttons">
@@ -32,78 +31,54 @@
 		</div>
 
 		<div class="md-col-3">
-			<button ng-show="activeTab === 'submit'" ng-disabled="state !== states.ok" class="btn btn-small btn-black" ng-click="submitForm()">Submit</button>
-			<button ng-show="activeTab === 'diagnose'" ng-disabled="state !== states.ok" class="btn btn-small btn-black" ng-click="diagnose()">Diagnose</button>
+			<button ng-disabled="state !== states.ok" class="btn btn-small btn-black" ng-click="submitForm()">Submit</button>
 		</div>
 	</div>
 
-	<div ng-show="activeTab === 'submit'">
-		<!-- Generated data form -->
-		<div class="diagnosis-page-body">
-			<div class="diagnosis-form">
-				
-				<div ng-repeat="group in formData" >
-					<h3 ng-show="group.name !== null && group.name !== ''">{{group.name}}</h3>
+	<!-- Generated data form -->
+	<div class="diagnosis-page-body">
+		<div class="diagnosis-form">
+			
+			<div ng-repeat="group in formData" >
+				<h3 ng-show="group.name !== null && group.name !== ''">{{group.name}}</h3>
 
-					<div ng-repeat="field in group.fieldList">
-						
-						<div class="col-md-4">
-							{{field.name}}
-						</div>
-
-						<div class="col-md-8 pull-left">
-							<!-- Simple field -->
-							<div ng-if="field['@type'] === 'SimpleFieldValue'">
-								<div ng-if="field.type === 'STRING'">
-									<input class="diagnosis-input" type="text" ng-model="field.value">
-								</div>
-
-								<div ng-if="field.type === 'DATE'">
-									<input class="diagnosis-input" type="text" name="field.name" ng-model="field.value" ui-date-mask="dd-MM-yyyy" placeholder="yyyy-mm-dd">
-								</div>
-
-								<div ng-if="field.type === 'INTEGER'">
-									<input class="diagnosis-input" type="text" name="field.name" ng-model="field.value" ui-number-mask="0">
-								</div>
-
-								<div ng-if="field.type === 'FLOAT'">
-									<input class="diagnosis-input" type="text" name="field.name" ng-model="field.value" ui-number-mask="2">
-								</div>
-							</div>
-
-							<!-- Choice field -->
-							<div ng-if="field['@type'] === 'ChoiceFieldValue'">
-								<select class="form-control diagnosis-input" ng-model="field.value" ng-options="value for value in field.possibleValues"></select>
-							</div>
-						</div>
-
+				<div ng-repeat="field in group.fieldList">
+					
+					<div class="col-md-4">
+						{{field.name}}
 					</div>
+
+					<div class="col-md-8 pull-left">
+						<!-- Simple field -->
+						<div ng-if="field['@type'] === 'SimpleFieldValue'">
+							<div ng-if="field.type === 'STRING'">
+								<input class="diagnosis-input" type="text" ng-model="field.value">
+							</div>
+
+							<div ng-if="field.type === 'DATE'">
+								<input class="diagnosis-input" type="text" name="field.name" ng-model="field.value" ui-date-mask="dd-MM-yyyy" placeholder="yyyy-mm-dd">
+							</div>
+
+							<div ng-if="field.type === 'INTEGER'">
+								<input class="diagnosis-input" type="text" name="field.name" ng-model="field.value" ui-number-mask="0">
+							</div>
+
+							<div ng-if="field.type === 'FLOAT'">
+								<input class="diagnosis-input" type="text" name="field.name" ng-model="field.value" ui-number-mask="2">
+							</div>
+						</div>
+
+						<!-- Choice field -->
+						<div ng-if="field['@type'] === 'ChoiceFieldValue'">
+							<select class="form-control diagnosis-input" ng-model="field.value" ng-options="value for value in field.possibleValues"></select>
+						</div>
+					</div>
+
 				</div>
-
-			</div>
-		</div>
-		<hr>
-
-	</div>
-
-	<!-- Diagnosis -->
-	<div ng-show="activeTab === 'diagnose'">
-		<div ng-show="state === states.ok" class="diagnosis-page-body">
-			Press the following button to invoke the process of diagnosis. 
-		</div>
-
-		<div ng-show="state === states.success" class="diagnosis-page-body">
-			Request has been succesful, but its functionality is yet to be implemented.
-		</div>
-
-		<div ng-show="state === states.error" class="diagnosis-page-body">
-			<div class="error">
-				<p>Something went wrong</p>
 			</div>
 
-			<p>Please check if you have submitted any data befeore invoking the diagnosis. If not, please do so and try again later. If this doesn't help, please contact the system administrator.</p>
 		</div>
-
 	</div>
+	<hr>
 
 </div>
