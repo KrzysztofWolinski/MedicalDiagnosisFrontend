@@ -53,25 +53,31 @@
 						<div ng-if="field['@type'] === 'SimpleFieldValue'">
 							<div ng-if="field.type === 'STRING'">
 								<input class="diagnosis-input" type="text" ng-model="field.value">
+								{{field.unit}}
 							</div>
 
 							<div ng-if="field.type === 'DATE'">
 								<input class="diagnosis-input" type="text" name="field.name" ng-model="field.value" ui-date-mask="dd-MM-yyyy" placeholder="yyyy-mm-dd">
+								{{field.unit}}
 							</div>
 
 							<div ng-if="field.type === 'INTEGER'">
 								<input class="diagnosis-input" type="text" name="field.name" ng-model="field.value" ui-number-mask="0">
+								{{field.unit}}
 							</div>
 
 							<div ng-if="field.type === 'FLOAT'">
 								<input class="diagnosis-input" type="text" name="field.name" ng-model="field.value" ui-number-mask="2">
+								{{field.unit}}
 							</div>
 						</div>
 
 						<!-- Choice field -->
 						<div ng-if="field['@type'] === 'ChoiceFieldValue'">
 							<select class="form-control diagnosis-input" ng-model="field.value" ng-options="value for value in field.possibleValues"></select>
-						</div>
+							{{field.unit}}
+						</div>						
+
 					</div>
 
 				</div>

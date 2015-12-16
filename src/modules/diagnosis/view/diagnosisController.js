@@ -16,24 +16,29 @@ angular.module('medicalDiagnosis.diagnosis')
 
 			$scope.formData = [];
 
+			function validateForm() {
+				var formValid = true;
+
+				angular.forEach($scope.formData, function(group) {
+					angular.forEach(group.fieldList, function(field) {
+						if (field.value === null || field.value === undefined || field.value === '') {
+							formValid = false;
+						}
+					});
+				});
+
+				return formValid;
+			}
+
 			$scope.submitForm = function() {
-				$scope.state = $scope.states.submitting;
-				diagnosisRepository.submitForm($scope.formData).then(function(response) {
-					$scope.state = $scope.states.success;
-				}, function() {
-					$scope.state = $scope.states.error;
-				});
-			};
-
-			$scope.diagnose = function() {
-				$scope.state = $scope.states.loading;
-				diagnosisRepository.performDiagnosis().then(function(response) {
-					$scope.state = $scope.states.success;
-					// TODO display results
-
-				}, function() {
-					$scope.state = $scope.states.error;
-				});
+				if (validateForm()) {
+					$scope.state = $scope.states.submitting;
+					diagnosisRepository.submitForm($scope.formData).then(function(response) {
+						$scope.state = $scope.states.success;
+					}, function() {
+						$scope.state = $scope.states.error;
+					});
+				}
 			};
 
 			$scope.selectTab = function(tab) {
