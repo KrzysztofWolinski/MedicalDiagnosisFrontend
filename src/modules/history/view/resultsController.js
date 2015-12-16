@@ -3,9 +3,10 @@
 angular.module('medicalDiagnosis.history')
 	.controller('resultsController', [
 		'$scope',
+		'$state',
 		'historyRepository',
 		'$stateParams',
-		function($scope, historyRepository, $stateParams) {
+		function($scope, $state, historyRepository, $stateParams) {
 			
 			$scope.states = {
 				loading: 'loading',
@@ -16,6 +17,7 @@ angular.module('medicalDiagnosis.history')
 			$scope.isEditing = false;
 			$scope.isSubmitting = false;
 			$scope.isError = false;
+			$scope.isDeleting = false;
 
 			$scope.conditionList = [];
 
@@ -56,7 +58,7 @@ angular.module('medicalDiagnosis.history')
 			};
 
 			$scope.addCondition = function(diseaseName) {
-				if (diseaseName !== '') {
+				if (diseaseName !== undefined && diseaseName !== '') {
 
 					var exists = false;
 					angular.forEach($scope.conditionProbability, function(entry) {
@@ -76,6 +78,16 @@ angular.module('medicalDiagnosis.history')
 
 			$scope.removeCondition = function(index) {
 				$scope.conditionProbability.splice(index, 1);
+			}
+
+			$scope.deleteData = function() {
+				$scope.isDeleting = true;
+				historyRepository.deleteDataSet($stateParams.id).then(function() {
+					$state.go('history');
+				}, function() {
+					$scope.isDeleting = false;
+					$scope.state = $scope.states.error;
+				});
 			}
 
 			function init() {

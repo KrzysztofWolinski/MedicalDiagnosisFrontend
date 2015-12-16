@@ -104,6 +104,30 @@ angular.module('medicalDiagnosis.history')
 				return deferred.promise;
 			}
 
+			function deleteDataSet(id) {
+				var deferred = $q.defer();
+
+				$http({
+						method: 'POST',
+						url: MEDICAL_DIAGNOSIS_URL + '/history/delete/' + id,
+						headers: {
+							'Content-Type': APPLICATION_JSON_VALUE
+						},
+						data: {
+							username: AuthService.getUsername(),
+							token: AuthService.getToken()
+						}
+					})
+					.success(function(response) {
+						deferred.resolve(response.data);
+					})
+					.error(function() {
+						deferred.reject();
+					});
+
+				return deferred.promise;	
+			}
+
 			var service = {
 				getHistoricDataByDate: function() {
 					return sendHistoricDataRequest('by-date');
@@ -122,6 +146,9 @@ angular.module('medicalDiagnosis.history')
 				},
 				getConditionsList: function() {
 					return getConditionsList();
+				},
+				deleteDataSet: function(id) {
+					return deleteDataSet(id);
 				}
 			};
 

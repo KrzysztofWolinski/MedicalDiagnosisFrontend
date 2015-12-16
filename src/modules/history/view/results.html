@@ -1,9 +1,20 @@
 <div ng-controller="resultsController">
 
-	<button ng-disabled="isSubmitting" class="btn btn-small btn-default" ui-sref="history">
-		<!--<span class="glyphicon glyphicon-menu-left"></span> -->
-		Back
-	</button>
+	<div class="row">
+		<div class="col-md-6 pull-left">
+			<button ng-disabled="isSubmitting" class="btn btn-small btn-default" ui-sref="history">
+				<!--<span class="glyphicon glyphicon-menu-left"></span> -->
+				Back
+			</button>
+		</div>
+
+		<div class="col-md-6">
+			<span class="loader pull-right" ng-show="isDeleting"></span>
+			<button ng-disabled="isSubmitting || isDeleting" class="btn btn-small btn-red pull-right" ng-click="deleteData()">
+				Delete
+			</button>
+		</div>
+	</div>
 
 	<!-- Loading -->
 	<div ng-show="state === states.loading">Loading...</div>
@@ -14,7 +25,7 @@
 	
 	<div ng-show="state === states.ok" class="row">
 		<div class="col-md-4">
-			<h2>{{dataBlock.date | date : 'yyyy-MM-dd HH:mm'}}</h2>
+			<h2>{{dataBlock.date | date : 'yyyy-MM-dd, HH:mm'}}</h2>
 		</div>
 	</div>
 
@@ -30,12 +41,12 @@
 		<div class="col-10-md pull-right">
 			<div ng-show="!dataBlock.rated && !isEditing">
 				<button ng-disabled="isSubmitting" class="btn btn-small btn-default" ng-click="edit()">Review</button>
-				<button ng-disabled="isSubmitting || conditionProbability.length <= 0" class="btn btn-small btn-black" ng-click="accept()">Accept</button>
+				<button ng-disabled="isSubmitting" class="btn btn-small btn-black" ng-click="accept()">Accept</button>
 			</div>
 
 			<div ng-show="!dataBlock.rated && isEditing">
 				<button ng-disabled="isSubmitting" class="btn btn-small btn-default" ng-click="cancel()">Cancel</button>
-				<button ng-disabled="isSubmitting || conditionProbability.length <= 0" class="btn btn-small btn-black" ng-click="accept()">Accept</button>
+				<button ng-disabled="isSubmitting" class="btn btn-small btn-black" ng-click="accept()">Accept</button>
 			</div>
 
 			<div ng-show="dataBlock.rated">
@@ -49,11 +60,14 @@
 		</div>
 
 		<div ng-show="!isEditing">
-			<div ng-show="conditionProbability.length > 0">
+			<div ng-show="dataBlock.rated && conditionProbability.length > 0">
 				<p>Results:</p>
 			</div>
-			<div ng-show="conditionProbability.length === 0">
-				<p>No data</p>
+			<div ng-show="dataBlock.rated && conditionProbability.length === 0">
+				<p>No conditions diagnosed</p>
+			</div>
+			<div ng-show="!dataBlock.rated">
+			Data has not been rated yet
 			</div>
 		</div>
 
