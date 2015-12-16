@@ -5,7 +5,9 @@ angular.module('medicalDiagnosis.navigation')
 		'$scope',
 		'$state',
 		'AuthService',
-		function($scope, $state, AuthService) {
+		'$interval',
+		'diagnosisRepository',
+		function($scope, $state, AuthService, $interval, diagnosisRepository) {
 			
 			$scope.logout = AuthService.logout;
 			$scope.state = $state;
@@ -19,5 +21,13 @@ angular.module('medicalDiagnosis.navigation')
 					return false;
 				}
 			};
+
+			$scope.newDiagnosesCount = 0;
+
+			$interval(function() {
+				diagnosisRepository.countNewDiagnoses(AuthService.getUsername()).then(function(result) {
+					$scope.newDiagnosesCount = result;
+				});
+			}, 10000)
 		}
 	]);

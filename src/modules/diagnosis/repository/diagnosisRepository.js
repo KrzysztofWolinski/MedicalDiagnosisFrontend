@@ -83,6 +83,25 @@ angular.module('medicalDiagnosis.diagnosis')
 						});
 
 					return deferred.promise;
+				},
+				countNewDiagnoses: function(username) {
+					var deferred = $q.defer();
+
+					$http({
+							method: 'GET',
+							url: MEDICAL_DIAGNOSIS_URL + '/diagnosis/count-new/' + username,
+							headers: {
+								'Content-Type': APPLICATION_JSON_VALUE
+							}
+						})
+						.success(function(data) {
+							deferred.resolve(data);
+						})
+						.error(function() {
+							deferred.reject();
+						});
+
+					return deferred.promise;
 				}
 			};
 

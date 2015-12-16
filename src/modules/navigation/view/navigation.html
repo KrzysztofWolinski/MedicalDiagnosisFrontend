@@ -23,6 +23,7 @@
         <li class="btn btn-lg" ng-class="{'navigation-active' : isActiveState('history')}" ui-sref="history">
             <span class="glyphicon glyphicon-book"></span>
             History
+            <span ng-show="newDiagnosesCount > 0" class="badge">{{newDiagnosesCount}}</span>
         </li>
 
         <li class="btn btn-lg" ng-click="logout()">
