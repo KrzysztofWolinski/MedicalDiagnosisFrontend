@@ -25,16 +25,18 @@
 				</div>
 				<div class="col-md-8">
 					<h2>
-						<button class="btn btn-small btn-black" ui-sref="results({id: dataBlock.dataId})">Show results</button>
+						<button class="btn btn-small btn-black" ui-sref="results({id: dataBlock.dataId})">Show details</button>
 						<span ng-show="dataBlock.rated" class="glyphicon glyphicon-ok-circle"></span>
 					</h2>
 				</div>
 			</div>
 
+			<!--
 			<div class="history-data-piece row" ng-repeat="piece in dataBlock.data | orderBy : 'name'">
 				<div class="col-md-4">{{piece.name}}</div>
 				<div class="col-md-8">{{(piece.value === null ? '-' : piece.value)}}</div>
 			</div>
+			-->
 
 		</div>
 
